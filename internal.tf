@@ -16,3 +16,14 @@ resource "google_compute_network" "vpc_dev" {
   # Will prevent 
   #delete_default_routes_on_create = true
 }
+
+resource "google_compute_firewall" "ssh-web" {
+ name    = "ssh-web"
+ network = "vpc-dev"
+
+ allow {
+   protocol = "tcp"
+   ports    = ["80", "443", "22"]
+ }
+}
+
